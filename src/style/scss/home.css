@@ -1,0 +1,44 @@
+.headerIconStyle {
+  float: right;
+  height: 64px;
+  line-height: 64px;
+  font-size: 1.3rem;
+  margin-left: 25px;
+  color: white;
+}
+
+.headerIconStyle:hover {
+  cursor: pointer;
+}
+
+.headerSpanStyle {
+  float: right;
+  font-size: 0.9rem;
+  height: 64px;
+  line-height: 64px;
+  color: white;
+}
+
+.headerSpanStyle:hover {
+  cursor: pointer;
+}
+
+.insuranceIcon {
+  float: left;
+  height: 64px;
+  line-height: 64px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.headerTitle {
+  float: left;
+  height: 64px;
+  line-height: 64px;
+  margin-left: 20px;
+  color: white;
+}
+
+.headerTitle:hover {
+  cursor: pointer;
+}
