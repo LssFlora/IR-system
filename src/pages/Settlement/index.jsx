@@ -16,6 +16,8 @@ export default function Settlement() {
     const navigateTo = useNavigate()
     const [number, setNumber] = useState(0)
     const [payInfo, setPayInfo] = useState()
+    const [isBtnDisabled, setIsBtnDisabled] = useState()
+
     const style = {
         // background: '#0092ff',
         // padding: '4px 0',
@@ -29,6 +31,7 @@ export default function Settlement() {
     }
     useEffect(() => {
         setPayAmount()
+        setBtnDisabled()
     }, [])
     const handleInputChange = (e) => {
         const { value } = e.target
@@ -68,6 +71,24 @@ export default function Settlement() {
 
         } else {
             message.error("提交失败!", [3])
+        }
+    }
+    const setBtnDisabled = () => {
+        switch (store.getState().role) {
+            case "登记员":
+                setIsBtnDisabled(true)
+                break;
+            case "管理员":
+                setIsBtnDisabled(false)
+                break;
+            case "评估员":
+                setIsBtnDisabled(true)
+                break;
+            case "报销员":
+                setIsBtnDisabled(false)
+                break;
+            default:
+                break;
         }
     }
     return (
@@ -141,7 +162,7 @@ export default function Settlement() {
                     <Col className="gutter-row" span={6}>
                         <div style={style}>
                             <Form.Item label="报销金额">
-                                <Input disabled value={number} onChange={handleInputChange} />
+                                <Input disabled value={number} />
                             </Form.Item>
                         </div>
                     </Col>
@@ -200,7 +221,11 @@ export default function Settlement() {
             <Row gutter={16}>
                 <Col className="gutter-row" span={4}>
                     <div style={style}>
-                        <Button type="primary" onClick={submitPayInfo}>提交</Button>
+                        <Button
+                            type="primary"
+                            onClick={submitPayInfo}
+                            disabled={isBtnDisabled}
+                        >提交</Button>
                     </div>
                 </Col>
                 {/* <Col className="gutter-row" span={4}>

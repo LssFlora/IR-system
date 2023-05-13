@@ -9,6 +9,7 @@ const initState = {
     telephone: ""
 }
 const stepMainReducer = (preState = initState, action) => {
+    console.log("redux", preState);
     const { type, data } = action
     switch (type) {
         case "setCaseId":
@@ -37,6 +38,8 @@ const stepMainReducer = (preState = initState, action) => {
             return preState
         case "setTelephone":
             preState = { ...preState, telephone: data }
+            return preState
+        default:
             return preState
     }
 }

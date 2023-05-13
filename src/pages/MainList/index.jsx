@@ -10,11 +10,10 @@ const { Search } = Input;
 export default function MainList() {
     const navigateTo = useNavigate()
     const pathName = useLocation().pathname
+    console.log("pathName", pathName.split("/")[2]);
     const onSearch = (value) => console.log(value);
     const [isDisabled, setIsDisabled] = useState()
     const setRole = () => {
-        // store.getState().role == "登记员" || "管理员" ? setIsNewBtnShow("block") : setIsNewBtnShow("none")
-        // console.log("setRole", store.getState().role);
         switch (store.getState().role) {
             case "登记员":
                 setIsDisabled(false)

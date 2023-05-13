@@ -23,7 +23,6 @@ const items = [
     getItem('已处理', 'done', <AppstoreOutlined />),
     getItem('已结束', 'end', <SettingOutlined />),
 ];
-const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
 
 export default function Home() {
     const navigateTo = useNavigate();

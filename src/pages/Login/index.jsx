@@ -98,15 +98,15 @@ export default function Login() {
                     <Form name="form_item_path" layout="vertical" onFinish={onFinish} style={{ width: "50%", margin: "0 auto" }}>
                         <MyFormItemGroup prefix={['user']}>
                             <MyFormItemGroup prefix={['name']}>
-                                <MyFormItem name="username" label={<label style={{ fontWeight: 500 }}>Username</label>} >
+                                <MyFormItem name="username" label={<label style={{ fontWeight: 500 }}>账户</label>} >
                                     <Input onChange={(e) => handleChange(e)} id="userName" />
                                 </MyFormItem>
-                                <MyFormItem name="password" label={<label style={{ fontWeight: 500 }}>Password</label>}>
+                                <MyFormItem name="password" label={<label style={{ fontWeight: 500 }}>密码</label>}>
                                     <Input.Password onChange={(e) => handleChange(e)} id="password" />
                                 </MyFormItem>
                             </MyFormItemGroup>
 
-                            <MyFormItem name="code" label={<label style={{ fontWeight: 500 }}>Verification Code</label>}>
+                            <MyFormItem name="code" label={<label style={{ fontWeight: 500 }}>验证码</label>}>
                                 <div>
                                     <Input style={{ width: "69%" }} onChange={(e) => handleChange(e)} id="code" />
                                     <img
@@ -120,8 +120,14 @@ export default function Login() {
                             </MyFormItem>
                         </MyFormItemGroup>
 
-                        <Button type="primary" htmlType="submit" style={{ width: "100%" }} onClick={goLogin}>
-                            Login
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            style={{ width: "100%" }}
+                            onClick={goLogin}
+                            onPressEnter={goLogin}
+                        >
+                            登录
                         </Button>
                     </Form>
                 </Card>

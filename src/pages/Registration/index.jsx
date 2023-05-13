@@ -69,7 +69,6 @@ export default function Registration(props) {
     }
     // 手机号自动获取用户信息
     const getAutoUserInfo = async () => {
-        // console.log("idCard", idCard);
         let result = await reqUserInfo(store.getState().telephone)
         if (result.code == 200) {
             console.log("useInfo", result.data);

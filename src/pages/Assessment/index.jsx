@@ -17,12 +17,11 @@ export default function Assessment() {
     const [isSameType, setIsSameType] = useState("否")
     const [isCompany, setIsCompany] = useState("否")
     const [isDisabled, setIsDisabled] = useState(true)
+    const [isBtnDisabled, setIsBtnDisabled] = useState()
     const style = {
         // background: '#0092ff',
         // padding: '4px 0',
     };
-    const monthFormat = 'YYYY/MM';
-    const dateFormat = 'YYYY/MM/DD';
 
 
     const sameTypeColumns = [
@@ -66,6 +65,7 @@ export default function Assessment() {
     ];
     useEffect(() => {
         getHistoryInfo()
+        setBtnDisabled()
     }, [])
     const getHistoryInfo = async () => {
         let result = await getHistoryCase(store.getState().insurantId)
@@ -94,6 +94,24 @@ export default function Assessment() {
             navigateTo("/home/processing")
         } else {
             message.error("提交失败", [3])
+        }
+    }
+    const setBtnDisabled = () => {
+        switch (store.getState().role) {
+            case "登记员":
+                setIsBtnDisabled(true)
+                break;
+            case "管理员":
+                setIsBtnDisabled(false)
+                break;
+            case "评估员":
+                setIsBtnDisabled(false)
+                break;
+            case "报销员":
+                setIsBtnDisabled(true)
+                break;
+            default:
+                break;
         }
     }
     return (
@@ -218,12 +236,21 @@ export default function Assessment() {
             <Row gutter={16}>
                 <Col className="gutter-row" span={4}>
                     <div style={style}>
-                        <Button type="primary" onClick={e => setAssessStatus(e, 1)}>通过</Button>
+                        <Button
+                            type="primary"
+                            onClick={e => setAssessStatus(e, 1)}
+                            disabled={isBtnDisabled}
+                        >通过</Button>
                     </div>
                 </Col>
                 <Col className="gutter-row" span={4}>
                     <div style={style}>
-                        <Button type="primary" onClick={e => setAssessStatus(e, 0)}>不通过</Button>
+                        <Button
+                            type="primary"
+                            onClick={e => setAssessStatus(e, 0)}
+                            disabled={isBtnDisabled}
+
+                        >不通过</Button>
                     </div>
                 </Col>
             </Row>

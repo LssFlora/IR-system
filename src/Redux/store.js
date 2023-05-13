@@ -3,9 +3,11 @@ import stepMainReducer from "./stepMain_reducer"
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import mainReducer from "./stepMain_reducer"
 const persistConfig = {
     key: 'root',
     storage: storage,
+    // whitelist: ["mainReducer"],
     stateReconciler: autoMergeLevel2 // 查看 'Merge Process' 部分的具体情况
 };
 
