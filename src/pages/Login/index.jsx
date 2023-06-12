@@ -5,6 +5,8 @@ import { Button, Form, Input, message } from 'antd';
 import urlAddress from "../../utils/urlAddress"
 import { reqLogin } from '../../service/api';
 import store from "../../Redux/store"
+import getCode from "./static/clickGetCode.png"
+import encrypt from '../../utils/encrypt';
 
 
 const MyFormItemContext = React.createContext([]);
@@ -40,7 +42,8 @@ export default function Login() {
                 setLoginForm({ ...loginForm, userName: value })
                 break;
             case "password":
-                setLoginForm({ ...loginForm, password: value })
+                console.log("encrypt(value)", encrypt(value));
+                setLoginForm({ ...loginForm, password: encrypt(value) })
                 break;
             case "code":
                 setLoginForm({ ...loginForm, code: value })
@@ -83,7 +86,7 @@ export default function Login() {
                 }
                 navigateTo("/home/all")
             } else {
-                message.error("登录失败！请重新登录", [3])
+                message.error(result.msg, [3])
             }
         }
     }
@@ -115,6 +118,7 @@ export default function Login() {
                                         style={{ marginLeft: "3px", borderRadius: "7px", float: "right", width: "29%" }}
                                         id="codeImg"
                                         onClick={refresh}
+                                        src={getCode}
                                     />
                                 </div>
                             </MyFormItem>

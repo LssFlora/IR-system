@@ -18,7 +18,7 @@ export default function Registration(props) {
     const navigateTo = useNavigate()
     const style = {}
     const [regiForm, setRegiForm] = useState({
-        recepitInfoVoList: [{
+        receiptInfoVoList: [{
             "receiptMoney": "",
             "receiptType": ""
         }],
@@ -92,7 +92,7 @@ export default function Registration(props) {
                 setRegiForm({ ...regiForm, eventDescription: value })
                 break;
             case "receiptMoney":
-                setRegiForm({ ...regiForm, recepitInfoVoList: [{ ...regiForm.recepitInfoVoList[0], receiptMoney: value * 1 }] })
+                setRegiForm({ ...regiForm, receiptInfoVoList: [{ ...regiForm.receiptInfoVoList[0], receiptMoney: value * 1 }] })
                 break;
             default:
                 break;
@@ -105,7 +105,7 @@ export default function Registration(props) {
         setRegiForm({ ...regiForm, hospitalizationStatus: e == "是" ? 1 : 0 })
     }
     const receiptSelectChange = (e) => {
-        setRegiForm({ ...regiForm, recepitInfoVoList: [{ ...regiForm.recepitInfoVoList[0], receiptType: e.join() }] })
+        setRegiForm({ ...regiForm, receiptInfoVoList: [{ ...regiForm.receiptInfoVoList[0], receiptType: e.join() }] })
     }
     // 收集日期选择框信息
     const handleDateChange = (e) => {
@@ -162,41 +162,6 @@ export default function Registration(props) {
                         <Descriptions.Item label="医保类型：" value={userInfo.insureType}>{userInfo.insureType}</Descriptions.Item>
                     </Descriptions>
                 </Row>
-                {/* <Row gutter={[16, 5]}>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                            <Form.Item label="姓名：">
-                                <Input />
-                            </Form.Item>
-                        </div>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                            <Form.Item label="性别：">
-                                <Select
-                                    defaultValue="女"
-                                    style={{
-                                        width: 120,
-                                        float: "left"
-                                    }}
-                                    //   onChange={handleChange}
-                                    options={[
-                                        {
-                                            value: '男',
-                                            label: '男',
-                                        },
-                                        {
-                                            value: '女',
-                                            label: '女',
-                                        },
-                                    ]}
-                                />
-                            </Form.Item>
-                        </div>
-                    </Col>
-                </Row> */}
-
-
                 <Divider orientation="left" className="dividerStyle" style={{ margin: "0 0 16px 0" }}>医院信息</Divider>
                 <Row
                     gutter={[16, 5]}
@@ -261,18 +226,6 @@ export default function Registration(props) {
                 </Row>
                 <Divider orientation="left" className="dividerStyle" style={{ margin: "0 0 16px 0" }}>事件信息</Divider>
                 <Row gutter={[16, 5]}>
-                    {/* <Col className="gutter-row" span={8}>
-                        <div style={style}>
-                            <Form.Item label="申请报销时间">
-                                <DatePicker
-                                    id='declarationTime'
-                                    defaultValue={dayjs('2015/01/01', dateFormat)}
-                                    format={dateFormat}
-                                    onChange={e => handleDateChange(e)}
-                                />
-                            </Form.Item>
-                        </div>
-                    </Col> */}
                     <Col className="gutter-row" span={16}>
                         <div style={style}>
                             <Form.Item label="事件描述">
@@ -314,6 +267,8 @@ export default function Registration(props) {
                             </Form.Item>
                         </div>
                     </Col>
+                </Row>
+                <Row gutter={[16, 5]}>
                 </Row>
             </Form>
             <Divider orientation="left" className="dividerStyle">

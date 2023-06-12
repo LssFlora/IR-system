@@ -39,22 +39,6 @@ export default function MainStep() {
     )
     const initKey = () => {
         const pathArr = pathName.split("/")
-        // switch (store.getState().insureStatus) {
-        //     case "已完成":
-        //         setCurrent(3)
-        //         break;
-        //     case "登记中":
-        //         setCurrent(0)
-        //         break;
-        //     case "评估中":
-        //         setCurrent(1)
-        //         break;
-        //     case "报销中":
-        //         setCurrent(2)
-        //         break;
-        //     default:
-        //         break;
-        // }
         switch (pathArr[pathArr.length - 1]) {
             case "registration":
                 setCurrent(0)
@@ -90,7 +74,7 @@ export default function MainStep() {
                 break;
             case "报销中":
                 items.forEach((item) => {
-                    item.title == "登记" ? item.status = "finish" : item.title == "评估" ? item.status = "finish" : item.title = "报销" ? item.status = "process" : item.status = "wait";
+                    item.title == "登记" || item.title == "评估" ? item.status = "finish" : item.title == "报销" ? item.status = "process" : item.status = "wait";
                 })
                 break;
             default:
@@ -99,7 +83,7 @@ export default function MainStep() {
     }
     const disabledKey = () => {
         items.forEach((item) => {
-            item.status == "finish" ? item.disabled = true : item.disabled = false
+            item.status == "finish" ? item.disabled = true : item.status == "wait" ? item.disabled = true : item.disabled = false
         })
     }
     useEffect(() => {

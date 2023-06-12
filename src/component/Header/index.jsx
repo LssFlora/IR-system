@@ -29,9 +29,11 @@ export default function Home() {
             navigateTo("/login")
         } else {
             message.error("登出失败", [3])
+            setIsModalOpen(false)
         }
     }
     const logOutNo = () => {
+        setIsModalOpen(false)
         message.warning("取消登出", [3])
     }
     return (

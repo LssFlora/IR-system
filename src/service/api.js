@@ -67,9 +67,9 @@ export const getHistoryCompany = (data) => {
 }
 // 设置评估结果
 export const setAssessResult = (data) => {
-    const { id, status } = data
+    const { id, status, reason } = data
     return request({
-        url: `/policyInfo/setEvaluationResults?id=${id}&status=${status}`,
+        url: `/policyInfo/setEvaluationResults?id=${id}&reason=${reason}&status=${status}`,
         method: "post",
     })
 }
@@ -95,4 +95,20 @@ export const getOverviewInfo = (data) => {
         method: "GET",
     })
 }
+// 获取登记信息
+export const getRegiInfo = (data) => {
+    return request({
+        url: `/policyInfo/getPolicyInfo/${data}`,
+        method: "GET",
+    })
+}
+// 获取失信信息
+export const getDishonesty = (data) => {
+    console.log("000");
+    return request({
+        url: `/policyInfo/getDishonestyInfo/${data}`,
+        method: "GET",
+    })
+}
+
 

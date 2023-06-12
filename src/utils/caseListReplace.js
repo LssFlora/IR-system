@@ -2,7 +2,6 @@ export default (caseList) => {
     let newList = caseList || []
     let result = []
     newList.forEach(caseItem => {
-        console.log("caseItem", caseItem);
         switch (caseItem.policyStatus) {
             case 1:
                 caseItem = { ...caseItem, policyStatus: "登记中" }
@@ -15,6 +14,9 @@ export default (caseList) => {
                 break;
             case 4:
                 caseItem = { ...caseItem, policyStatus: "已完成" }
+                break;
+            case 5:
+                caseItem = { ...caseItem, policyStatus: "评估不通过" }
                 break;
             default:
                 break;

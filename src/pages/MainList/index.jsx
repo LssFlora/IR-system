@@ -81,7 +81,7 @@ export default function MainList() {
         store.dispatch({ type: "setIsNewRegi", data: false })
         store.dispatch({ type: "setTelephone", data: record.phone })
         console.log("mainList role", store.getState().role);
-        if (record.policyStatus == "已完成") {
+        if (record.policyStatus == "已完成" || record.policyStatus == "评估不通过") {
             navigateTo(`${pathName}Case/${record.id}/overview`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
         } else if (record.policyStatus == "登记中") {
             navigateTo(`${pathName}Case/${record.id}/registration`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
@@ -91,24 +91,6 @@ export default function MainList() {
         else if (record.policyStatus == "报销中") {
             navigateTo(`${pathName}Case/${record.id}/settlement`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
         }
-        // else {
-        // switch (store.getState().role) {
-        //     case "登记员":
-        //         navigateTo(`${pathName}Case/${record.id}/registration`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
-        //         break;
-        //     case "评估员":
-        //         navigateTo(`${pathName}Case/${record.id}/assessment`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
-        //         break;
-        //     case "报销员":
-        //         navigateTo(`${pathName}Case/${record.id}/settlement`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
-        //         break;
-        //     case "管理员":
-        //         navigateTo(`${pathName}Case/${record.id}/overview`, { state: { record, outStepUrl: `${pathName}Case/${record.caseId}` } })
-        //         break;
-        //     default:
-        //         break;
-        // }
-        // }
     }
     // 创建新表单
     const goNewRegi = () => {
@@ -118,15 +100,9 @@ export default function MainList() {
     return (
         <div>
             <Row>
-                {/* <Col span={8}>
-                    <Search placeholder="输入客户号" onSearch={onSearch} enterButton style={{ width: "65%" }} />
-                </Col>
-                <Col span={8}>
-                    <Search placeholder="输入保单号" onSearch={onSearch} enterButton style={{ width: "65%" }} />
-                </Col> */}
-                <Col span={8}>
-                    <Button type="primary" onClick={goNewRegi} disabled={isDisabled}>新建录入</Button>
-                </Col>
+                {store.getState().role == "登记员" || store.getState().role == "管理员" ? <Col span={8}>
+                    <Button type="primary" onClick={goNewRegi} >新建录入</Button>
+                </Col> : ""}
                 <Table
                     columns={columns}
                     dataSource={caseList}
